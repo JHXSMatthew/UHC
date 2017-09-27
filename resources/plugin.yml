@@ -1,0 +1,11 @@
+name: UHC
+main: com.github.JHXSMatthew.Core
+depend: [GameEvent, GameServerStatusSync]
+version: 0.0.1-SNAPSHOT
+commands:
+  team:
+    description: Main command!
+    aliases: [team]
+  zu:
+    description: Main command!
+    aliases: [zu]
