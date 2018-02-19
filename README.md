@@ -1,7 +1,12 @@
-# 项目名称
+# UHC 极限生存
 
-此README还未填写，现为模板。
+## Dependencies （依赖)
+所有依赖均不是必须，可以通过移除插件内的相关代码去除依赖。
+很多是为了维持之前服务器架构使用的一些负责插件间通讯的插件。
 
+- [GameEvent] (https://github.com/JHXSMatthew/GameEvent) 通用游戏事件
+- [GameServerStatusSync] (https://github.com/JHXSMatthew/GameServerStatusSync) 控制玩家加入
+- [BossBarSender] (https://github.com/JHXSMatthew/BossBarSender) 发送无龙BossBar
 
 # 其他项目
 其他项目可以在 www.mcndsj.com/projects 找到。 如您有所需的未开源，请通过任意相关项目的GitHub issue联系我，会将对应项目开源。
