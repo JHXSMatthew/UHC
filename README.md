@@ -1,6 +1,13 @@
 # UHC 极限生存
 
+An UHC game plugin written by JHXSMatthew and widly used in YourCraft mini game server. 
+Think it as a PUBG but Minecraft style.
+
+
 ## Dependencies （依赖)
+All dependencies are not compulsory. They are for the player control or unified game event for cross-plugins communications.
+Dependencies can be removed by removing all relevant codes related to the dependencies.
+
 所有依赖均不是必须，可以通过移除插件内的相关代码去除依赖。
 很多是为了维持之前服务器架构使用的一些负责插件间通讯的插件。
 
