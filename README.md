@@ -37,6 +37,20 @@ Format: Column::Type
 
 (id,Name,Games,Wins,Kills,Deaths,Stacks,Points)
 
+SQL Statement
+
+    CREATE TABLE UHC (
+      id Integer PRIMARY KEY AUTO_INCREMENT ,
+      Name Varchar(16),
+      Games Integer,
+      Wins Integer,
+      Kills Integer,
+      Deaths Integer,
+      Stacks Integer,
+      Points Integer
+    );
+    CREATE INDEX Index_UHC_Name ON UHC (Name);
+
 # 其他项目
 其他项目可以在 www.mcndsj.com/projects 找到。 如您有所需的未开源，请通过任意相关项目的GitHub issue联系我，会将对应项目开源。
 
