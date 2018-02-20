@@ -22,22 +22,20 @@ The Schema should look like this.
 数据表结构已经比较久远已经找不到了。
 凭着记忆和代码推了一下，应该是这样的：
 
+Format: Column::Type
+
+格式: 列名::类型
+
+- id::long?or int
+- Name::varchar(16)
+- Games:: int
+- Wins::int
+- Kills::int
+- Deaths::int
+- Stacks::int
+- Points::int
+
 (id,Name,Games,Wins,Kills,Deaths,Stacks,Points)
-
-Format
-
-格式
-
-Name::Type
-id::long?or int
-Name::varchar(16)
-Games:: int
-Wins::int
-Kills::int
-Deaths::int
-Stacks::int
-Points::int
-
 
 # 其他项目
 其他项目可以在 www.mcndsj.com/projects 找到。 如您有所需的未开源，请通过任意相关项目的GitHub issue联系我，会将对应项目开源。
