@@ -1,22 +1,46 @@
-# UHC ¼«ÏŞÉú´æ
+# UHC æé™ç”Ÿå­˜
 
 An UHC game plugin written by JHXSMatthew and widly used in YourCraft mini game server. 
 Think it as a PUBG but Minecraft style.
 
 
-## Dependencies £¨ÒÀÀµ)
+## Dependencies ï¼ˆä¾èµ–)
 All dependencies are not compulsory. They are for the player control or unified game event for cross-plugins communications.
 Dependencies can be removed by removing all relevant codes related to the dependencies.
 
-ËùÓĞÒÀÀµ¾ù²»ÊÇ±ØĞë£¬¿ÉÒÔÍ¨¹ıÒÆ³ı²å¼şÄÚµÄÏà¹Ø´úÂëÈ¥³ıÒÀÀµ¡£
-ºÜ¶àÊÇÎªÁËÎ¬³ÖÖ®Ç°·şÎñÆ÷¼Ü¹¹Ê¹ÓÃµÄÒ»Ğ©¸ºÔğ²å¼ş¼äÍ¨Ñ¶µÄ²å¼ş¡£
+æ‰€æœ‰ä¾èµ–å‡ä¸æ˜¯å¿…é¡»ï¼Œå¯ä»¥é€šè¿‡ç§»é™¤æ’ä»¶å†…çš„ç›¸å…³ä»£ç å»é™¤ä¾èµ–ã€‚
+å¾ˆå¤šæ˜¯ä¸ºäº†ç»´æŒä¹‹å‰æœåŠ¡å™¨æ¶æ„ä½¿ç”¨çš„ä¸€äº›è´Ÿè´£æ’ä»¶é—´é€šè®¯çš„æ’ä»¶ã€‚
 
-- [GameEvent] (https://github.com/JHXSMatthew/GameEvent) Í¨ÓÃÓÎÏ·ÊÂ¼ş
-- [GameServerStatusSync] (https://github.com/JHXSMatthew/GameServerStatusSync) ¿ØÖÆÍæ¼Ò¼ÓÈë
-- [BossBarSender] (https://github.com/JHXSMatthew/BossBarSender) ·¢ËÍÎŞÁúBossBar
+- [GameEvent] (https://github.com/JHXSMatthew/GameEvent) é€šç”¨æ¸¸æˆäº‹ä»¶
+- [GameServerStatusSync] (https://github.com/JHXSMatthew/GameServerStatusSync) æ§åˆ¶ç©å®¶åŠ å…¥
+- [BossBarSender] (https://github.com/JHXSMatthew/BossBarSender) å‘é€æ— é¾™BossBar
 
-# ÆäËûÏîÄ¿
-ÆäËûÏîÄ¿¿ÉÒÔÔÚ www.mcndsj.com/projects ÕÒµ½¡£ ÈçÄúÓĞËùĞèµÄÎ´¿ªÔ´£¬ÇëÍ¨¹ıÈÎÒâÏà¹ØÏîÄ¿µÄGitHub issueÁªÏµÎÒ£¬»á½«¶ÔÓ¦ÏîÄ¿¿ªÔ´¡£
+## Sql Schema (æ•°æ®è¡¨ç»“æ„)
+The Sql Schema is lost. But it's not complicated since I write different plugins without strong sql coupling.
+The Schema should look like this.
+
+æ•°æ®è¡¨ç»“æ„å·²ç»æ¯”è¾ƒä¹…è¿œå·²ç»æ‰¾ä¸åˆ°äº†ã€‚
+å‡­ç€è®°å¿†å’Œä»£ç æ¨äº†ä¸€ä¸‹ï¼Œåº”è¯¥æ˜¯è¿™æ ·çš„ï¼š
+
+(id,Name,Games,Wins,Kills,Deaths,Stacks,Points)
+
+Format
+
+æ ¼å¼
+
+Name::Type
+id::long?or int
+Name::varchar(16)
+Games:: int
+Wins::int
+Kills::int
+Deaths::int
+Stacks::int
+Points::int
+
+
+# å…¶ä»–é¡¹ç›®
+å…¶ä»–é¡¹ç›®å¯ä»¥åœ¨ www.mcndsj.com/projects æ‰¾åˆ°ã€‚ å¦‚æ‚¨æœ‰æ‰€éœ€çš„æœªå¼€æºï¼Œè¯·é€šè¿‡ä»»æ„ç›¸å…³é¡¹ç›®çš„GitHub issueè”ç³»æˆ‘ï¼Œä¼šå°†å¯¹åº”é¡¹ç›®å¼€æºã€‚
 
 # NOTICE
 
@@ -25,8 +49,8 @@ The code in this project may use untraceable third-party open source codes and m
 Please contact me through email 68638023@qq.com or submit an issue in GitHub repo and I will remove any illegal code from this project.
 I owe you my apologies.
 
-# ×¢Òâ
+# æ³¨æ„
 
-ÏîÄ¿ÄÚ¿ÉÄÜº¬ÓĞÎŞ·¨ÕÒÑ°À´Ô´µÄµÚÈı·½¿ªÔ´´úÂë£¬ÈçÊ¹ÓÃÓĞÎ¥·´¿ªÔ´Ğ­Òé£¬ÇëÄúÖ±½ÓÍ¨¹ıÓÊ¼ş 68638023@qq.com »ò GitHub µÄ issue ÁªÏµÎÒ¡£ ÎÒ½«µÚÒ»Ê±¼ä½«Î¥¹æ´úÂë
-´ÓÏîÄ¿ÖĞÉ¾³ı£¬Éî±íÇ¸Òâ£¡
+é¡¹ç›®å†…å¯èƒ½å«æœ‰æ— æ³•æ‰¾å¯»æ¥æºçš„ç¬¬ä¸‰æ–¹å¼€æºä»£ç ï¼Œå¦‚ä½¿ç”¨æœ‰è¿åå¼€æºåè®®ï¼Œè¯·æ‚¨ç›´æ¥é€šè¿‡é‚®ä»¶ 68638023@qq.com æˆ– GitHub çš„ issue è”ç³»æˆ‘ã€‚ æˆ‘å°†ç¬¬ä¸€æ—¶é—´å°†è¿è§„ä»£ç 
+ä»é¡¹ç›®ä¸­åˆ é™¤ï¼Œæ·±è¡¨æ­‰æ„ï¼
 
