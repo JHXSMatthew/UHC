@@ -3,6 +3,7 @@ package com.github.JHXSMatthew.Listener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -34,6 +35,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.projectiles.ProjectileSource;
@@ -87,7 +89,16 @@ public class PlayerListener implements Listener{
 	public void onHeldItem (PlayerItemHeldEvent event){
 		ItemStack item = event.getPlayer().getInventory().getItem(event.getNewSlot());
 		if(item.getType() == Material.EMPTY_MAP){
-			item.setDurability((short) (item.getDurability() + 5));
+			List<String> lore = item.getItemMeta().getLore();
+			if(lore == null || lore.isEmpty()){
+				lore = new ArrayList<String>();
+				lore.add("右键激活地图！");
+				ItemMeta meta = item.getItemMeta();
+				meta.setLore(lore);
+				meta.setDisplayName("右击激活地图");
+				item.setItemMeta(meta);
+
+			}
 		}
 	}
 	
