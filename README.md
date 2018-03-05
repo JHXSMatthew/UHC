@@ -5,22 +5,19 @@ Think it as a PUBG but Minecraft style.
 
 
 ## Dependencies （依赖)
-All dependencies are not compulsory. They are for the player control or unified game event for cross-plugins communications.
-Dependencies can be removed by removing all relevant codes related to the dependencies.
+For the latest version (master branch), all the old YourCraft dependencies are removed.
+Only Vault is required.
 
-所有依赖均不是必须，可以通过移除插件内的相关代码去除依赖。
-很多是为了维持之前服务器架构使用的一些负责插件间通讯的插件。
+在最新的版本里，已经去除了原YourCraft框架内的依赖，并加入了config文件。
 
-- [GameEvent] (https://github.com/JHXSMatthew/GameEvent) 通用游戏事件
-- [GameServerStatusSync] (https://github.com/JHXSMatthew/GameServerStatusSync) 控制玩家加入
-- [BossBarSender] (https://github.com/JHXSMatthew/BossBarSender) 发送无龙BossBar
+- [Vault] (https://dev.bukkit.org/projects/vault)
+
 
 ## Sql Schema (数据表结构)
 The Sql Schema is lost. But it's not complicated since I write different plugins without strong sql coupling.
 The Schema should look like this.
 
-数据表结构已经比较久远已经找不到了。
-凭着记忆和代码推了一下，应该是这样的：
+数据表结构如下，开启插件会自动创建数据表。 请在配置文件内打开。
 
 Format: Column::Type
 
