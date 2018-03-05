@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.github.JHXSMatthew.Config.Config;
 import com.github.JHXSMatthew.Game.GameStats;
 import com.github.JHXSMatthew.Util.SQLStatsContainer;
 import com.huskehhh.mysql.mysql.MySQL;
@@ -16,12 +17,28 @@ public class MySQLController {
 	private static String TABLENAME  = "UHC";
 	
 	public MySQLController(){
-	    this.my = new MySQL("192.168.123.2", "3306", "games", "game", "NO_PUBLIC_INFO");
+	    this.my = new MySQL(Config.SQL_ADDRESS, String.valueOf(Config.SQL_PORT)
+				, Config.SQL_DB_NAME, Config.SQL_USER_NAME, Config.SQL_PASSWORD);
+	    TABLENAME = Config.SQL_TABLE_NAME;
 	}
 	
 	public void openConnection(){
 	    try {
 			c = my.openConnection();
+			Statement s = c.createStatement();
+			s.execute("CREATE TABLE IF NOT EXISTS UHC (" +
+					"id Integer PRIMARY KEY AUTO_INCREMENT ," +
+					"Name Varchar(16)," +
+					"Games Integer," +
+					"Wins Integer," +
+					"Kills Integer," +
+					"Deaths Integer," +
+					"Stacks Integer," +
+					"Points Integer," +
+					"INDEX `Index_UHC_Name` (`Name`)" +
+					");");
+			s.close();
+
 		} catch (ClassNotFoundException e) {
 			System.out.print("Connection error !");
 			e.printStackTrace();

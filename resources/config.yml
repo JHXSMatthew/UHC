@@ -1,0 +1,11 @@
+
+statistics:
+  enable: false
+  sql:
+    enable: false
+    address: "127.0.0.1"
+    port: 3306
+    database: "main"
+    userName: "root"
+    password: "root"
+    table: "UHC"

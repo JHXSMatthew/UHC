@@ -11,6 +11,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -61,8 +62,14 @@ public class Core extends JavaPlugin{
 		Logger logger = Logger.getLogger("Minecraft");
 		
 		instance = this;
-	
-		
+		// YOU CAN ALWAYS SET THIS FLAG TO DISABLE LOADING FROM CONFIG
+		if(!Config.NON_CONFIG_MODE){
+			if(getConfig() == null){
+				saveDefaultConfig();
+			}
+			Config.loadConfig(getConfig());
+		}
+
 		logger.info("============ UHC初始化 ============");
 		logger.info("-->加载配置文件");
 		msg = new Message();
@@ -81,9 +88,13 @@ public class Core extends JavaPlugin{
 		logger.info("    BC done");
 		pc = new PlayerController();
 		logger.info("    PC done");
-		sql = new MySQLController();
-		sql.openConnection();
-		logger.info("    SQL done");
+
+		if(Config.USING_MYSQL){
+			sql = new MySQLController();
+			sql.openConnection();
+			logger.info("    SQL done");
+		}
+
 		chest = new ChestControl();
 		logger.info("    CC done");
 		chunk = new ChunkController();
@@ -128,6 +139,7 @@ public class Core extends JavaPlugin{
 			p.kickPlayer("大厅已满");
 		}
 	}
+
 	
 	public static Core get(){
 		return instance;

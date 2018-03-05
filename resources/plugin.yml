@@ -1,6 +1,6 @@
 name: UHC
 main: com.github.JHXSMatthew.Core
-depend: [GameEvent, GameServerStatusSync]
+depend: [Vault]
 version: 0.0.1-SNAPSHOT
 commands:
   team:
