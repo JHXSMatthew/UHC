@@ -31,14 +31,7 @@ import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.entity.PotionSplashEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerInteractEntityEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerLoginEvent;
-import org.bukkit.event.player.PlayerPreLoginEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -88,6 +81,14 @@ public class PlayerListener implements Listener{
 	  	}
 	    Core.get().getCurrentGame().GameJoin(gp);
 	    evt.setJoinMessage("");
+	}
+
+	@EventHandler
+	public void onHeldItem (PlayerItemHeldEvent event){
+		ItemStack item = event.getPlayer().getInventory().getItem(event.getNewSlot());
+		if(item.getType() == Material.EMPTY_MAP){
+			item.setDurability((short) (item.getDurability() + 5));
+		}
 	}
 	
 	@EventHandler
