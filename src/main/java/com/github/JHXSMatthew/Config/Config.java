@@ -24,6 +24,7 @@ public class Config {
 	public static String SQL_PASSWORD = "pwd";
 	public static String SQL_DB_NAME = "mc";
 	public static String SQL_TABLE_NAME = "uhc";
+	public static String LOBBY_WORLD_NAME = "lobby";
 
 
 	public static void loadConfig(FileConfiguration config){
@@ -42,6 +43,7 @@ public class Config {
 		}else{
 			//TODO: implement the yaml statistics storage, tho it's not necessary
 		}
+		LOBBY_WORLD_NAME = config.getString("lobbyWorldName");
 
 
 

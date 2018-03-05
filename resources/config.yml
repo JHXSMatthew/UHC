@@ -1,4 +1,4 @@
-
+lobbyWorldName: "lobby"
 statistics:
   enable: false
   sql:

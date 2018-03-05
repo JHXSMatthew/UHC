@@ -20,9 +20,9 @@ public class MapController {
 	
 	private static String worldName = "uhcWorld";
 	private boolean isGood = false;
-	DecimalFormat df = new DecimalFormat("0.00");
+	private DecimalFormat df = new DecimalFormat("0.00");
 	
-	World w;
+	private World w;
 
 	private float count = 0;
 	
@@ -39,7 +39,7 @@ public class MapController {
 	
 
 	
-	public void begainGenerate(){
+	public void beginGenerate(){
 		
 		new BukkitRunnable(){
 			int currentX = -Core.chunkNum;

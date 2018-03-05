@@ -31,11 +31,11 @@ public class ChestControl {
 		meta.addEnchant(Enchantment.FIRE_ASPECT, 1, false);
 		addItem(Material.WOOD_SWORD,(short)0,1,meta);
 		
-		addItem(Material.MAP,(short)0,1,null);
+		addItem(Material.EMPTY_MAP,(short)0,1,null);
 
-		addItem(Material.MAP,(short)0,1,null);
-		addItem(Material.MAP,(short)0,1,null);
-		addItem(Material.MAP,(short)0,1,null);
+		addItem(Material.EMPTY_MAP,(short)0,1,null);
+		addItem(Material.EMPTY_MAP,(short)0,1,null);
+		addItem(Material.EMPTY_MAP,(short)0,1,null);
 
 		
 		addItem(Material.DIAMOND,(short)0,2,null);

@@ -64,9 +64,7 @@ public class Core extends JavaPlugin{
 		instance = this;
 		// YOU CAN ALWAYS SET THIS FLAG TO DISABLE LOADING FROM CONFIG
 		if(!Config.NON_CONFIG_MODE){
-			if(getConfig() == null){
-				saveDefaultConfig();
-			}
+			saveDefaultConfig();
 			Config.loadConfig(getConfig());
 		}
 
@@ -126,8 +124,8 @@ public class Core extends JavaPlugin{
 		
 		current = new Game();
 		logger.info("============ 初始化完毕 ============");
-		
-		lobby = Bukkit.getWorld("lobby").getSpawnLocation();
+
+		lobby = Bukkit.getWorld(Config.LOBBY_WORLD_NAME).getSpawnLocation();
  		lobby.getWorld().setTime(1000);
  		lobby.getWorld().setStorm(false);
  		lobby.getWorld().setGameRuleValue("doDaylightCycle", "false");

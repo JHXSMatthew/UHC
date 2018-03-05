@@ -1312,7 +1312,7 @@ public class Game {
 					return;
 				}}catch(Exception e){e.printStackTrace(); System.out.print("first");}
 				
-				Core.get().getMc().begainGenerate();
+				Core.get().getMc().beginGenerate();
 				try{
 				gameState = GameState.Generating;
 				updateScoreboard(false);
