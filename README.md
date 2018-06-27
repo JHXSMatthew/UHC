@@ -1,8 +1,7 @@
 # UHC 极限生存
 
-An UHC game plugin written by JHXSMatthew and widly used in YourCraft mini game server. 
-Think it as a PUBG but Minecraft style.
-
+An UHC game plugin wrote by JHXSMatthew and widly used in YourCraft mini game server. 
+It is a PUBG like mini-game in Mimecraft
 
 ## Dependencies （依赖)
 For the latest version (master branch), all the old YourCraft dependencies are removed.
