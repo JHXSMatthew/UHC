@@ -1,11 +1,49 @@
+# UHC 极限生存插件配置文件
+
+# 大厅世界名称
 lobbyWorldName: "lobby"
+
+# 统计系统配置
 statistics:
-  enable: false
+  # 是否启用统计系统
+  enable: true
   sql:
-    enable: false
+    # 是否使用 MySQL 存储统计数据 (否则使用 YAML 文件)
+    enable: true
+    # 数据库连接配置
     address: "127.0.0.1"
     port: 3306
-    database: "main"
+    database: "minecraft"
     userName: "root"
-    password: "root"
+    password: ""
     table: "UHC"
+
+# 游戏设置
+gameSettings:
+  # 开始游戏所需玩家比例 (%)
+  startPercentage: 90
+  # 最大玩家数量
+  maxPlayers: 99
+  # 开始倒计时 (秒)
+  startCountdown: 300
+  # 无PVP阶段时长 (秒)
+  noPvPDuration: 600
+  # 边界收缩总时长 (秒)
+  borderShrinkDuration: 3600
+  # 初始边界大小
+  initialBorderSize: 2000
+  # 预加载区块数量
+  chunkPreloadCount: 64
+
+# 职业系统 (未来功能)
+classes:
+  enabled: false
+  # 示例职业配置
+  warrior:
+    enabled: true
+    healthBonus: 1.1
+    damageBonus: 1.05
+  archer:
+    enabled: true
+    bowDamageBonus: 1.15
+    arrowSpeedBonus: 1.1

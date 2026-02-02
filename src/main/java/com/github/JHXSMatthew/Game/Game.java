@@ -33,11 +33,11 @@ import com.github.JHXSMatthew.Util.LocationUtil;
 
 public class Game {
 
-	private static double PeopleCouldStart = 90;
-	private static int MaxPeopleCount = 99;
-	private static int startCounting = 300;
+	private static double PeopleCouldStart = Config.START_PERCENTAGE;
+	private static int MaxPeopleCount = Config.MAX_PLAYERS;
+	private static int startCounting = Config.START_COUNTDOWN;
 	
-	private static double shrinkTime = 3600;
+	private static double shrinkTime = Config.BORDER_SHRINK_DURATION;
 	
 	private static boolean debug = false;
 	

@@ -36,8 +36,8 @@ import com.github.JHXSMatthew.Util.NMSHandler;
 public class Core extends JavaPlugin{
 
 	private static Core instance;
-	public static double boarderSize = 2000;
-	public static int chunkNum = 64;
+	public static double boarderSize = Config.INITIAL_BORDER_SIZE;
+	public static int chunkNum = Config.CHUNK_PRELOAD_COUNT;
 	
 	public static Location lobby;
 	

@@ -11,41 +11,47 @@ Only Vault is required.
 
 - [Vault] (https://dev.bukkit.org/projects/vault)
 
+## Features
+- Team matching system
+- World border mechanics
+- Timed border shrinking
+- Spectator system
+- Statistics tracking
+- MySQL database support
+- Configurable gameplay settings
+
+## Configuration
+The plugin includes extensive configuration options in config.yml:
+- Game settings (player counts, timers, border sizes)
+- Database connection settings
+- Class system (future feature)
+- Performance tuning options
+
+## Recent Improvements
+- Enhanced configuration system with more customizable options
+- Improved database initialization with automatic table creation
+- Better error handling and connection management
+- Migration of hardcoded values to configuration files
+- Performance optimizations
 
 ## Sql Schema (数据表结构)
-The Sql Schema is lost. But it's not complicated since I write different plugins without strong sql coupling.
-The Schema should look like this.
-
-数据表结构如下，开启插件会自动创建数据表。 请在配置文件内打开。
+The plugin automatically creates the required database tables. The structure is:
 
 Format: Column::Type
 
 格式: 列名::类型
 
 - id::long?or int
-- Name::varchar(16)
+- Name::varchar(64)  # Increased from varchar(16) for longer usernames
 - Games:: int
 - Wins::int
 - Kills::int
 - Deaths::int
 - Stacks::int
 - Points::int
+- LastPlayed::timestamp
 
-(id,Name,Games,Wins,Kills,Deaths,Stacks,Points)
-
-SQL Statement
-
-    CREATE TABLE UHC (
-      id Integer PRIMARY KEY AUTO_INCREMENT ,
-      Name Varchar(16),
-      Games Integer,
-      Wins Integer,
-      Kills Integer,
-      Deaths Integer,
-      Stacks Integer,
-      Points Integer
-    );
-    CREATE INDEX Index_UHC_Name ON UHC (Name);
+(id,Name,Games,Wins,Kills,Deaths,Stacks,Points,LastPlayed)
 
 # 其他项目
 其他项目可以在 www.mcndsj.com/projects 找到。 如您有所需的未开源，请通过任意相关项目的GitHub issue联系我，会将对应项目开源。

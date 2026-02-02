@@ -25,19 +25,10 @@ public class MySQLController {
 	public void openConnection(){
 	    try {
 			c = my.openConnection();
-			Statement s = c.createStatement();
-			s.execute("CREATE TABLE IF NOT EXISTS UHC (" +
-					"id Integer PRIMARY KEY AUTO_INCREMENT ," +
-					"Name Varchar(16)," +
-					"Games Integer," +
-					"Wins Integer," +
-					"Kills Integer," +
-					"Deaths Integer," +
-					"Stacks Integer," +
-					"Points Integer," +
-					"INDEX `Index_UHC_Name` (`Name`)" +
-					");");
-			s.close();
+			// 使用数据库初始化工具创建表
+			com.github.JHXSMatthew.Utils.DatabaseInitializer initializer = 
+				new com.github.JHXSMatthew.Utils.DatabaseInitializer();
+			initializer.initializeTables(c);
 
 		} catch (ClassNotFoundException e) {
 			System.out.print("Connection error !");
