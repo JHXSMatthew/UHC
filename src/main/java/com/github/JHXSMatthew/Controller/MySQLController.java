@@ -1,9 +1,9 @@
 package com.github.JHXSMatthew.Controller;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import com.github.JHXSMatthew.Config.Config;
 import com.github.JHXSMatthew.Game.GameStats;
@@ -12,9 +12,9 @@ import com.huskehhh.mysql.mysql.MySQL;
 
 public class MySQLController {
 
-	private Connection c =null;
+	private Connection c = null;
 	private MySQL my;
-	private static String TABLENAME  = "UHC";
+	private static String TABLENAME = "UHC";
 	
 	public MySQLController(){
 	    this.my = new MySQL(Config.SQL_ADDRESS, String.valueOf(Config.SQL_PORT)
@@ -54,66 +54,99 @@ public class MySQLController {
 		if(!this.my.checkConnection()){
 			this.c = this.my.openConnection();
 		}
-		Statement s = this.c.createStatement();
-		ResultSet result = s.executeQuery("SELECT * FROM `" + TABLENAME + "` Where `Name`='"+name+"';");
+		
+		// 使用 PreparedStatement 防止 SQL 注入
+		String query = "SELECT * FROM `" + TABLENAME + "` WHERE `Name`=?";
+		PreparedStatement ps = null;
+		ResultSet result = null;
 		SQLStatsContainer current = new SQLStatsContainer();
 		
-		if(result.next()){
-			try{
-				current.death = result.getInt("Deaths");
-				current.wins = result.getInt("Wins");
-				current.kills = result.getInt("Kills");
-				current.games = result.getInt("Games");
-				current.stack = result.getInt("Stacks");
-				current.points =  result.getInt("Points");
-			}catch(Exception e){
-				e.printStackTrace();
+		try {
+			ps = this.c.prepareStatement(query);
+			ps.setString(1, name);
+			result = ps.executeQuery();
+			
+			if(result.next()){
+				try{
+					current.death = result.getInt("Deaths");
+					current.wins = result.getInt("Wins");
+					current.kills = result.getInt("Kills");
+					current.games = result.getInt("Games");
+					current.stack = result.getInt("Stacks");
+					current.points = result.getInt("Points");
+				}catch(SQLException e){
+					System.err.println("Error reading player stats: " + e.getMessage());
+					e.printStackTrace();
+				}
+				current.New = false;
 			}
-			current.New = false;
+		} finally {
+			// 确保资源被正确关闭
+			if(result != null) {
+				try { result.close(); } catch(SQLException e) { e.printStackTrace(); }
+			}
+			if(ps != null) {
+				try { ps.close(); } catch(SQLException e) { e.printStackTrace(); }
+			}
 		}
-		
-		s.close();
-		result.close();
-		s=null;
 		
 		return current;
-		
 	}
+	
 	public boolean savePlayerData(GameStats data){
+		PreparedStatement ps = null;
+		
 		try{
 			String name = data.getName();
-			Statement s = this.c.createStatement();
+			
 			if(data.isNew()){
-				
-				s.executeUpdate("INSERT INTO `"+ TABLENAME +"` (`Name`,`Games`,`Wins`,`Kills`,`Deaths`,`Stacks`,`Points`) VALUES ('"+data.getName()+"','"+ data.getGames() + "','"+ data.getWins() + "','" + data.getKills() + "','" + data.getDeath() + "','" + data.getStack() +"','" +data.getPoints() + "');" );
+				// INSERT 使用 PreparedStatement
+				String insertQuery = "INSERT INTO `"+ TABLENAME +"` (`Name`,`Games`,`Wins`,`Kills`,`Deaths`,`Stacks`,`Points`) VALUES (?,?,?,?,?,?,?)";
+				ps = this.c.prepareStatement(insertQuery);
+				ps.setString(1, data.getName());
+				ps.setInt(2, data.getGames());
+				ps.setInt(3, data.getWins());
+				ps.setInt(4, data.getKills());
+				ps.setInt(5, data.getDeath());
+				ps.setInt(6, data.getStack());
+				ps.setInt(7, data.getPoints());
+				ps.executeUpdate();
 			}else{
+				// UPDATE 使用 PreparedStatement
+				String updateQuery;
 				if(data.getStack() > data.Ori_stack){
-					s.executeUpdate("UPDATE `"+ TABLENAME +"` SET `Games`='"+data.getGames() +"',`Wins`='"+data.getWins()
-							+"',`Kills`='"+ data.getKills() 
-							+"',`Deaths`='"+ data.getDeath()
-							+"',`Stacks`='"+ data.getStack()
-							+"',`Points`='"+ data.getPoints()
-						    + "' Where `Name`='"+name+"';");
+					updateQuery = "UPDATE `"+ TABLENAME +"` SET `Games`=?,`Wins`=?,`Kills`=?,`Deaths`=?,`Stacks`=?,`Points`=? WHERE `Name`=?";
+					ps = this.c.prepareStatement(updateQuery);
+					ps.setInt(1, data.getGames());
+					ps.setInt(2, data.getWins());
+					ps.setInt(3, data.getKills());
+					ps.setInt(4, data.getDeath());
+					ps.setInt(5, data.getStack());
+					ps.setInt(6, data.getPoints());
+					ps.setString(7, name);
 				}else{
-					s.executeUpdate("UPDATE `"+ TABLENAME +"` SET `Games`='"+data.getGames() +"',`Wins`='"+data.getWins()
-							+"',`Kills`='"+ data.getKills() 
-							+"',`Deaths`='"+ data.getDeath()
-							+"',`Points`='"+ data.getPoints()
-						    + "' Where `Name`='"+name+"';");
+					updateQuery = "UPDATE `"+ TABLENAME +"` SET `Games`=?,`Wins`=?,`Kills`=?,`Deaths`=?,`Points`=? WHERE `Name`=?";
+					ps = this.c.prepareStatement(updateQuery);
+					ps.setInt(1, data.getGames());
+					ps.setInt(2, data.getWins());
+					ps.setInt(3, data.getKills());
+					ps.setInt(4, data.getDeath());
+					ps.setInt(5, data.getPoints());
+					ps.setString(6, name);
 				}
-					 
-				}
+				ps.executeUpdate();
+			}
 			
-			
-			s.close();
 			return true;
 		}catch(SQLException e){
+			System.err.println("Error saving player data: " + e.getMessage());
 			e.printStackTrace();
 			return false;
+		} finally {
+			// 确保资源被正确关闭
+			if(ps != null) {
+				try { ps.close(); } catch(SQLException e) { e.printStackTrace(); }
+			}
 		}
-		
 	}
-	
-	
-
 }
